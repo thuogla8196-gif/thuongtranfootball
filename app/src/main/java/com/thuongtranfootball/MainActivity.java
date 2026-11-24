@@ -25,6 +25,8 @@ public class MainActivity extends Activity {
         sources.addAll(prefs.getStringSet("sources", new HashSet<>(Arrays.asList("https://yanhh3d.ee","https://hhpanda.st","https://yanhh3d.now"))));
         history.addAll(prefs.getStringSet("history",new HashSet<String>()));
         favorites.addAll(prefs.getStringSet("favorites",new HashSet<String>()));
+        if(!sources.contains("https://yang3d.ee")) sources.add("https://yang3d.ee");
+        save();
         build();
         open(current);
     }
@@ -36,6 +38,7 @@ public class MainActivity extends Activity {
         Button go=new Button(this); go.setText("MỞ WEBSITE"); go.setOnClickListener(v->open(address.getText().toString())); root.addView(go);
         bar=new LinearLayout(this); root.addView(bar);
         addButton("Nguồn",()->chooseSource()); addButton("Thêm nguồn",()->addSource()); addButton("Lịch sử",()->showList("Lịch sử",history)); addButton("Yêu thích",()->showList("Yêu thích",favorites));
+        Button yang3d=new Button(this); yang3d.setText("MỞ YANG3D.EE"); yang3d.setOnClickListener(v->open("https://yang3d.ee")); root.addView(yang3d);
         web=new WebView(this);
         WebSettings settings=web.getSettings();
         settings.setJavaScriptEnabled(true);
